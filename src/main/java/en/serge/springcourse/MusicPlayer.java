@@ -1,12 +1,22 @@
 package en.serge.springcourse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MusicPlayer {
-	Music music;
-	public MusicPlayer(Music music) {
-		this.music = music;
+	private List<Music> musicList = new ArrayList<>();
+	
+	public MusicPlayer() {}
+	
+	public MusicPlayer(List<Music>  musicList) {
+		this.musicList = musicList;
+	}
+	
+	public void setSong(List<Music> musicList) {
+		this.musicList = musicList;
 	}
 	
 	public void playMusic() {
-		System.out.println("Now playing: " + music.getSong());
+		System.out.println(musicList);
 	}
 }

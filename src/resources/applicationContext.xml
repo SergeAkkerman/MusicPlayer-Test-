@@ -6,12 +6,32 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-
-	<bean id="music" class="en.serge.springcourse.ClassicalMusic">
+        
+	<context:property-placeholder location="classpath:musicPlayer.properties"/>
+	
+	<bean id="classical" class="en.serge.springcourse.ClassicalMusic">
+		<property name="author" value="${musicPlayer.classicalAuthor}"/>
+		<property name="id" value="${musicPlayer.classicalId}"/>
+	</bean>
+	
+	<bean id="jazz" class="en.serge.springcourse.JazzMusic">
+		<property name="author" value="${musicPlayer.jazzAuthor}"/>
+		<property name="id" value="${musicPlayer.jazzId}"/>
+	</bean>
+	
+	<bean id="rock" class="en.serge.springcourse.RocklMusic">
+		<property name="author" value="${musicPlayer.rockAuthor}"/>
+		<property name="id" value="${musicPlayer.rockId}"/>
 	</bean>
 	
 	<bean id="musicPlayer" class="en.serge.springcourse.MusicPlayer">
-	<constructor-arg ref="music"/>
+		<property name="song">
+		<list>
+		<ref bean="classical" />
+		<ref bean="jazz" />
+		<ref bean="rock" />
+		</list>
+		</property>
 	</bean>
 
 </beans>
